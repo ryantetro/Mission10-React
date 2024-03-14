@@ -8,12 +8,16 @@ namespace Mission10API.Controllers
     [ApiController]
     public class BowlerController : ControllerBase
     {
+        // Private field to hold the repository instance
         private IBowlingRepository _bowlingRepository;
+
+        // Constructor injecting the bowling repository interface
         public BowlerController(IBowlingRepository temp)
         {
             _bowlingRepository = temp;
         }
 
+        // HTTP GET method to retrieve bowler data, including team associations
         [HttpGet]
         public ActionResult<IEnumerable<Bowler>> GetWithTeams()
         {

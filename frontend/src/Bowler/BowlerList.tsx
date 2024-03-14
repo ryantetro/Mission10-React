@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { Bowler } from '../Bowler/types/Bowlers';
 
 function BowlerList() {
+  // State to store bowler data fetched from the API
   const [bowlerData, setBowlerData] = useState<Bowler[]>([]);
 
+  // useEffect hook to fetch bowler data from the backend when the component mounts
   useEffect(() => {
     const fetchBowlerData = async () => {
       const rsp = await fetch('http://localhost:5032/bowler');
@@ -13,15 +15,22 @@ function BowlerList() {
     fetchBowlerData();
   }, []);
 
+  // Filter bowler data for specific teams ('Marlins' or 'Sharks')
   const filteredBowlerData = bowlerData.filter(
     (f) => f.teamName === 'Marlins' || f.teamName === 'Sharks',
   );
 
   return (
     <>
+      {/* Header section for the bowler list */}
       <div className="row">
+        <h3 className="text-center">
+          Take a look at all of our Amazing Bowlers!
+        </h3>
+        <br></br>
         <h4 className="text-center">Marlins and Sharks Bowlers</h4>
       </div>
+      {/* Table to display filtered bowler data */}
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -37,6 +46,7 @@ function BowlerList() {
           </tr>
         </thead>
         <tbody>
+          {/* Map through the filtered bowler data to render table rows */}
           {filteredBowlerData.map((b) => (
             <tr key={b.id}>
               <td>{b.firstName}</td>

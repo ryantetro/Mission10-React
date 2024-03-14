@@ -1,3 +1,4 @@
+// Type definition for a Bowler object
 export type Bowler = {
   id: number;
   firstName: string;
